@@ -1,0 +1,27 @@
+#
+# This is used to deploy backend stack on local development machine
+# how to: 1. install docker, docker-compose
+#         2. run 'docker-compose up -d'
+#         3. wait for db restore to finish (only on first run)
+# to see postgres logs: docker logs -f $(docker ps -a | awk '{ print $1,$2 }' | grep postgres:11 | awk '{print $1}')
+
+version: "3.3"
+
+services:
+  xive-db:
+    image: postgres:11.6
+    ports:
+      - "5438:5432"
+    environment:
+      - POSTGRES_PASSWORD=guest
+      - POSTGRES_USER=guest
+      - POSTGRES_DB=xive
+    volumes:
+      - ./dump/:/docker-entrypoint-initdb.d/
+      - v-xive-db:/var/lib/postgresql/data
+    deploy:
+      restart_policy:
+        condition: unless-stopped
+
+volumes:
+  v-xive-db:
