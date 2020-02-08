@@ -1,0 +1,31 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h2>Book List</h2>
+  </div>
+  <div class="panel-body">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>id</th>
+        <th>title</th>
+        <th>description</th>
+        <th>first 50 paragraphs</th>
+        <th>actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let book of books | async | paginate: config; let i = index">
+        <td>{{book.id}}</td>
+        <td>{{book.title}}</td>
+        <td>{{book.description}}</td>
+        <td>{{book.first50Paragraphs}}</td>
+        <td>
+          <button (click)="deleteBook(book.id)" class="btn btn-danger">Delete</button>
+          <button (click)="bookDetails(book.id)" class="btn btn-info" style="margin-left: 10px">Details</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <pagination-controls (pageChange)="pageChange($event)"></pagination-controls>
+  </div>
+</div>
