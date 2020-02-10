@@ -14,7 +14,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let book of books | async | paginate: config; let i = index">
+      <tr *ngFor="let book of books | paginate: config">
         <td>{{book.id}}</td>
         <td>{{book.title}}</td>
         <td>{{book.description}}</td>

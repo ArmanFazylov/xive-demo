@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BookDetailsComponent } from '../book-details/book-details.component';
-import { Observable } from "rxjs";
 import { BookService } from "../book.service";
-import { Book } from "../book";
+import {Book, IBook} from "../book";
 
 @Component({
   selector: 'app-book-list',
@@ -11,8 +9,7 @@ import { Book } from "../book";
   styleUrls: ['./book-list.component.scss']
 })
 export class BookListComponent implements OnInit {
-  books: Observable<Book[]>;
-  p: number = 1;
+  books: Book[];
   config: any;
 
   constructor(
@@ -21,7 +18,7 @@ export class BookListComponent implements OnInit {
     this.config = {
       currentPage: 1,
       itemsPerPage: 10,
-      totalItems: 100
+      totalItems: 200
     };
   }
 
@@ -30,7 +27,13 @@ export class BookListComponent implements OnInit {
   }
 
   reloadData() {
-    this.books = this.bookService.getBooksList(this.config.currentPage, this.config.itemsPerPage);
+   this.bookService.getBooksList(this.config.currentPage, this.config.itemsPerPage)
+      .subscribe(data => {
+        this.books = data.content;
+        this.config.totalItems = data.totalElements;
+      }, error => {
+        console.log(error);
+      });
   }
 
   deleteBook(id: number) {
@@ -51,7 +54,7 @@ export class BookListComponent implements OnInit {
 
   pageChange(newPage: number) {
     this.config.currentPage = newPage;
-    this.bookService.getBooksList(newPage, this.config.itemsPerPage)
+    this.reloadData();
   }
 
 }

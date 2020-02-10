@@ -27,9 +27,7 @@ export class BookService {
   }
 
   getBooksList(page: number, size: number): Observable<any> {
-    console.log('aaa ' + page);
-    console.log('bbbb ' + size);
-    let param: any = {'page': page, 'size': size};
+    let param: any = {'page': page - 1, 'size': size};
     return this.http.get(`${this.BASE_URL}`, {params: param});
   }
 }
