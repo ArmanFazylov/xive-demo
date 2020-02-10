@@ -19,7 +19,8 @@ public class BookDTO implements Serializable {
     @Size(min = 1, max = 200)
     private String title;
 
-    @Size(min = 1, max = 200)
+    @NotNull
+    @Size(min = 1, max = 2048)
     private String description;
 
     private String first50Paragraphs;

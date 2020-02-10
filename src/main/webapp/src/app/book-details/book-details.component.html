@@ -15,4 +15,7 @@
 
 <br>
 <br>
-<button (click)="list()" class="btn btn-primary">Back to Books List</button><br>
+<div style="display: inline-block;">
+  <button (click)="list()" class="btn btn-primary" style="float: left">Back to Books List</button>
+  <button (click)="editBook(book.id)" class="btn btn-warning" style="float: right; margin-left: 10px">Edit</button>
+</div>

@@ -18,7 +18,7 @@ export class BookListComponent implements OnInit {
     this.config = {
       currentPage: 1,
       itemsPerPage: 10,
-      totalItems: 200
+      totalItems: 200,
     };
   }
 
@@ -46,6 +46,10 @@ export class BookListComponent implements OnInit {
         error => {
           console.log(error)
         });
+  }
+
+  editBook(id: number) {
+    this.router.navigate(['update', id]);
   }
 
   bookDetails(id: number) {

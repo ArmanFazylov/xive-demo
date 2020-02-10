@@ -14,7 +14,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,7 +41,6 @@ import java.util.Optional;
 @Api(value = "Rest api for managing books", tags = "Books API")
 @Slf4j
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:4200")
 public class BookController {
     private final IAuthenticationFacade authenticationFacade;
     private final BookService bookService;
@@ -90,7 +88,7 @@ public class BookController {
     }
 
     /**
-     * {@code GET  /books} : get all the books.
+     * {@code GET  /books} : Get all the books.
      *
      * @param pageable the pagination information.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of books in body.
@@ -104,7 +102,7 @@ public class BookController {
     }
 
     /**
-     * {@code GET  /books/:id} : get the "id" book.
+     * {@code GET  /books/:id} : Get the "id" book.
      *
      * @param id the id of the bookDTO to retrieve.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the bookDTO, or with status {@code 404 (Not Found)}.

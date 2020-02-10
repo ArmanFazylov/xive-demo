@@ -19,9 +19,10 @@
         <td>{{book.title}}</td>
         <td>{{book.description}}</td>
         <td>{{book.first50Paragraphs}}</td>
-        <td>
-          <button (click)="deleteBook(book.id)" class="btn btn-danger">Delete</button>
-          <button (click)="bookDetails(book.id)" class="btn btn-info" style="margin-left: 10px">Details</button>
+        <td style="max-width: max-content">
+          <button (click)="bookDetails(book.id)" class="btn btn-info">Details</button>
+          <button (click)="editBook(book.id)" class="btn btn-warning" style="margin-left: 10px">Edit</button>
+          <button (click)="deleteBook(book.id)" class="btn btn-danger" style="margin-left: 10px">Delete</button>
         </td>
       </tr>
       </tbody>

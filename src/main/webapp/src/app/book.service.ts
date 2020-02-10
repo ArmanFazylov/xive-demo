@@ -19,7 +19,7 @@ export class BookService {
   }
 
   updateBook(id: number, value: any): Observable<Object> {
-    return this.http.put(`${this.BASE_URL}/${id}`, value);
+    return this.http.put(`${this.BASE_URL}`, value);
   }
 
   deleteBook(id: number): Observable<any> {
@@ -27,7 +27,7 @@ export class BookService {
   }
 
   getBooksList(page: number, size: number): Observable<any> {
-    let param: any = {'page': page - 1, 'size': size};
+    let param: any = {'page': page - 1, 'size': size, 'sort': 'id'};
     return this.http.get(`${this.BASE_URL}`, {params: param});
   }
 }
